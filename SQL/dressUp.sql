@@ -4,8 +4,8 @@ CREATE DATABASE dressUp;
 USE dressUp;
 
 -- CHARACTER & CLOTHING TABLES
-DROP TABLE IF EXISTS userCharacter;
-CREATE TABLE userCharacter(
+DROP TABLE IF EXISTS newCharacter;
+CREATE TABLE newCharacter(
     characterID INT(7) NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     catchphrase VARCHAR(45) NULL,
@@ -50,7 +50,7 @@ CREATE TABLE characterClothing(
     characterID INT(7) NOT NULL,
     clothingID INT(5) NOT NULL,
     PRIMARY KEY (characterID, clothingID),
-    CONSTRAINT character_characterClothing_fk FOREIGN KEY (characterID) REFERENCES userCharacter (characterID),
+    CONSTRAINT character_characterClothing_fk FOREIGN KEY (characterID) REFERENCES newCharacter (characterID),
     CONSTRAINT clothingItems_characterClothing_fk FOREIGN KEY (clothingID) REFERENCES clothingItem (clothingID)
 );
 
@@ -71,5 +71,5 @@ CREATE TABLE userCharacters(
     characterID INT(5),
     PRIMARY KEY (userID, characterID),
     CONSTRAINT userInfo_userCharacters_fk FOREIGN KEY (userID) REFERENCES userInfo (userID),
-    CONSTRAINT character_userCharacters_fk FOREIGN KEY (characterID) REFERENCES userCharacter (characterID)
+    CONSTRAINT character_userCharacters_fk FOREIGN KEY (characterID) REFERENCES newCharacter (characterID)
 );
