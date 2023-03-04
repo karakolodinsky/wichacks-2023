@@ -5,7 +5,7 @@ USE dressUp;
 
 -- CHARACTER & CLOTHING TABLES
 DROP TABLE IF EXISTS userCharacter;
-CREATE TABLE character(
+CREATE TABLE userCharacter(
     characterID INT(7) NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     catchphrase VARCHAR(45) NULL,
