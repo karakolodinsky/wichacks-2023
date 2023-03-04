@@ -9,8 +9,6 @@ CREATE TABLE character(
     characterID INT(7) NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     catchphrase VARCHAR(45) NULL,
-    -- clothes
-
     PRIMARY KEY (characterID)
 );
 
@@ -23,9 +21,38 @@ CREATE TABLE categories(
 
 DROP TABLE IF EXISTS clothingItem;
 CREATE TABLE clothingItem(
-    clothingID NOT NULL
+    clothingID INT(5) NOT NULL,
+    categoryID INT(2) NOT NULL,
+    name VARCHAR(45) NOT NULL,
+    link VARCHAR(100) NOT NULL,
+    PRIMARY KEY (clothingID, categoryID),
+    CONSTRAINT category_clothingItem_fk FOREIGN KEY (categoryID) REFERENCES categories (categoryID)
 );
 
+DROP TABLE IF EXISTS keywords;
+CREATE TABLE keywords(
+    keywordID INT(2) NOT NULL,
+    keyword VARCHAR(30) NOT NULL,
+    PRIMARY KEY (keywordID)
+);
+
+DROP TABLE IF EXISTS clothingKeywords;
+CREATE TABLE clothingKeywords(
+    clothingID INT(5) NOT NULL,
+    keywordID INT(2) NOT NULL,
+    PRIMARY KEY (clothingID, keywordID),
+    CONSTRAINT clothingItem_clothingKeywords_fk FOREIGN KEY (clothingID) REFERENCES clothingItem (clothingID),
+    CONSTRAINT keywords_clothingKeywords_fk FOREIGN KEY (keywordID) REFERENCES keywords (keywordID)
+);
+
+DROP TABLE IF EXISTS characterClothing;
+CREATE TABLE characterClothing(
+    characterID INT(7) NOT NULL,
+    clothingID INT(5) NOT NULL,
+    PRIMARY KEY (characterID, clothingID),
+    CONSTRAINT character_characterClothing_fk FOREIGN KEY (characterID) REFERENCES character (characterID),
+    CONSTRAINT clothingItems_characterClothing_fk FOREIGN KEY (clothingID) REFERENCES clothingItem (clothingID)
+);
 
 
 -- USER TABLES
