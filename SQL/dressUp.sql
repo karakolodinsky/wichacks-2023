@@ -15,9 +15,11 @@ CREATE TABLE newCharacter(
 DROP TABLE IF EXISTS categories;
 CREATE TABLE categories(
     categoryID INT(2) NOT NULL,
-    categoryName VARCHAR(15) NOT NULL,
+    categoryName VARCHAR(30) NOT NULL,
     PRIMARY KEY (categoryID)
 );
+
+INSERT INTO categories VALUES (01, "Head Accessories"), (02, "Tops"), (03, "Pants"), (04, "Shoes"), (05, "Cultural");
 
 DROP TABLE IF EXISTS clothingItem;
 CREATE TABLE clothingItem(
