@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.SQLNonTransientConnectionException;
 import java.sql.Statement;
 
-import com.google.api.client.util.Data;
+// import com.google.api.client.util.Data;
 
 /**
 * A sample app that connects to a Cloud SQL instance and lists all available tables 

@@ -2,6 +2,7 @@ package com.example;
 
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -43,6 +44,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// import javax.swing.event.ChangeListener;
+
 // import org.checkerframework.common.subtyping.qual.Bottom;
 
 // import com.google.api.services.sqladmin.SQLAdmin.BackupRuns.List;
@@ -71,6 +74,7 @@ public class App extends Application {
     private static ImageView imageView4;
     private static ImageView imageView5;
     private static ImageView imageView6;
+    private static GridPane ggee;
     
     
 
@@ -106,7 +110,7 @@ public class App extends Application {
 
         body = new Image( "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Character.png");
         ap.setBody(body);
-        top = new Image( "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_ShortSleeve.png");
+        top = new Image( "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_ShortSleeve_Cropped.png");
         ap.setTop(top);
         bottom = new Image( "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Bottoms\\Pants\\Pants_Baggy.png");
         ap.setBottom(bottom);
@@ -149,11 +153,11 @@ public class App extends Application {
 
         StackPane stackp = new StackPane();
         stackp.setAlignment(Pos.CENTER_LEFT);
-        stackp.getChildren().addAll(imageView, imageView2, imageView3, imageView4, imageView5);
+        stackp.getChildren().addAll( imageView, imageView2, imageView3, imageView4, imageView5, imageView6);
         
         
         ChoiceBox<String> cb = new ChoiceBox<>();
-        cb.getItems().addAll("body", "shoes", "top", "bottom", "hair");
+        cb.getItems().addAll("body", "shoes", "top", "bottom", "hair", "traditional");
         cb.setValue("body");
         final ColorPicker colorPicker = new ColorPicker();
         // EventHandler<ActionEvent> nakedevent = new EventHandler<ActionEvent>() {
@@ -182,6 +186,7 @@ public class App extends Application {
                                 case "top": imageView2.setEffect(lighting);
                                 case "bottom": imageView3.setEffect(lighting);
                                 case "hair": imageView4.setEffect(lighting);
+                                case "traditional": imageView6.setEffect(lighting);
                         }
                         // todo: fix
                         
@@ -252,10 +257,38 @@ public class App extends Application {
         tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_LongSleeve.png");
         tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_ShortSleeve.png");
         tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_ShortSleeve_Cropped.png");
-        tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_Sleeveless");
-        bottoms.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_Sleeveless_Cropped");
+        tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_Sleeveless.png");
+        tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_Sleeveless_Cropped.png");
+        tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\Turtleneck_Sleeveless_Cropped.png");
+        tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\Turtleneck_Sleeveless.png");
+        tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\Turtleneck_ShortSleeve.png");
+        tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\Turtleneck_ShortSleeve_Cropped.png");
+        tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\Turtleneck_LongSleeve_Cropped.png");
+        tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\Turtleneck_LongSleeve.png");
+        tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\VNeck_ShortSleeve_Cropped.png");
+        tops.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\VNeck_ShortSleeve");
 
 
+        ArrayList<String> feet = new ArrayList<>();
+        feet.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Shoes\\Booties.png");
+        feet.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Shoes\\Boots.png");
+        feet.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Shoes\\Converse.png");
+         feet.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Shoes\\Flats.png");
+         feet.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Shoes\\Slides.png");
+
+         ArrayList<String> hair = new ArrayList<>();
+         hair.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Hair\\ChoppyLong.png");
+         hair.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Hair\\ChoppyShort.png");
+         hair.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Hair\\LongHair.png");
+         hair.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Hair\\Low_Bun.png");
+         hair.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\Hair\\ShortHair.png");
+
+
+         ArrayList<String> Cul = new ArrayList<>();
+         Cul.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\CulturalClothing\\Hanfu.png");
+         Cul.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\CulturalClothing\\IroAtiBuba.png");
+         Cul.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\CulturalClothing\\Thobe.png");
+         Cul.add("file:demo\\src\\main\\java\\com\\example\\IMAGES\\CulturalClothing\\Jeogori.png");
         // GridPane topsbox = new GridPane();
         // topsindex = 0;
         // for (int row = 0; row < 3; ++row) {
@@ -307,17 +340,24 @@ public class App extends Application {
         cb2.getItems().addAll("hair", "tops", "bottoms", "shoes", "traditional");
         cb2.setValue("bottoms");
 
-        // String val2 = cb2.getValue();
-        // switch (val2){
-        //         case "hair": bottomsbox.setVisible(false);
-        //         case "tops": bottomsbox.setVisible(false);
-        //         case "bottoms": bottomsbox.setVisible(true);
-        //         case "shoes": bottomsbox.setVisible(false);
-        //         case "traditional": bottomsbox.setVisible(false);
-        // }
-
+        String val2 = cb2.getValue();
+        switch (val2){
+                case "hair":  ggee = SwitchGrid(val2, hair);
+                case "tops":  ggee = SwitchGrid(val2, tops);
+                case "bottoms":  ggee = SwitchGrid(val2, bottoms);
+                case "shoes":  ggee = SwitchGrid(val2, feet);
+                case "traditional": ggee = SwitchGrid(val2, Cul);
+        }
+        
+        cb2.setOnAction((e) -> {
+                Object selectedItem = cb2.getSelectionModel().getSelectedItem();
+                vbox2.getChildren().clear();
+                vbox2.getChildren().addAll(ggee);
+                System.out.println("Selection made: [" + selectedItem );
+                System.out.println("   ChoiceBox.getValue(): " + cb2.getValue());
+            });
         // vbox2.getChildren().addAll(bottomsbox, hairbox, tradbox, topsbox,shoesbox, hairbox);
-  
+  // buttonGrid.getChildren().clear();
         vbox.getChildren().addAll(cb2);
         
 
@@ -336,6 +376,49 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+    public static GridPane SwitchGrid(String type, ArrayList<String> pics){
+        int ind = 0;
+        GridPane Griddy = new GridPane();
+        for (int row = 0; row < 3; ++row) {
+                for (int col = 0; col < 4; ++col) {
+                        System.out.println(type);
+                    Button buttons = new Button();
+                    if (ind<pics.size()){
+                        Image cloth = new Image(pics.get(ind));
+                        ImageView cloths = new ImageView(cloth);
+                        cloths.setFitWidth(90);
+                        cloths.setFitHeight(90);
+                        buttons.setGraphic(cloths);
+                        buttons.setMinWidth(90);
+                        buttons.setMinHeight(90);
+                        ImageView cloth2 = new ImageView(cloth);
+                        cloth2.setFitWidth(425);
+                        cloth2.setFitHeight(425);
+                        if (type.equals("bottoms")){
+                            buttons.setOnAction(e ->  imageView3.setImage(cloth)
+                        );
+                        } else if (type.equals("tops")){   
+                        buttons.setOnAction(e ->  imageView2.setImage(cloth)
+                        ); }
+                    else if (type.equals("hair")){   
+                                    buttons.setOnAction(e ->  imageView4.setImage(cloth)
+                           ); }
+                           else if (type.equals("shoes")){   
+                            buttons.setOnAction(e ->  imageView5.setImage(cloth)
+                   ); }
+
+                   else if (type.equals("traditional")){   
+                        buttons.setOnAction(e ->  imageView6.setImage(cloth)
+                        ); }
+
+                    }
+                    Griddy.add(buttons, col, row);
+                    ind++;
+                }
+            }
+    return Griddy;
+}
 
 
 
