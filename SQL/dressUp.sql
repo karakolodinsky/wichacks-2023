@@ -38,6 +38,10 @@ CREATE TABLE clothingItem(
     -- Starts with 4: Shoes
     -- Starts with 5: Cultural Clothing
 INSERT INTO clothingItem VALUES (10000, 01, "Low Bun", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Hair\\Low_Bun.png"),
+(10001, 01, "Short Hair", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Hair\\ShortHair.png"),
+(10002, 01, "Short Choppy Hair", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Hair\\ChoppyShort.png"),
+(10003, 01, "Long Hair", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Hair\\LongHair.png"),
+(10004, 01, "Long Choppy Hair", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Hair\\ShortHair.png"),
 (20000, 02, "Cropped Long Sleeve Crewneck", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_LongSleeve_Cropped.png"),
 (20001, 02, "Long Sleeve Crewneck", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_LongSleeve.png"),
 (20002, 02, "Cropped Short Sleeve Crewneck", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_ShortSleeve_Cropped.png"),
@@ -63,27 +67,39 @@ INSERT INTO clothingItem VALUES (10000, 01, "Low Bun", "file:demo\\src\\main\\ja
 (30004, 03, "Shorts Long", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Bottoms\\Pants\\Shorts_Shin.png"),
 (30005, 03, "Shorts Medium", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Bottoms\\Pants\\Shorts_Thigh.png"),
 (30006, 03, "Shorts Long", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Bottoms\\Pants\\Shorts_short.png"),
+(30007, 03, "Long Skirt", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Bottoms\\Skirts\\LongSkirt.png"),
+(30008, 03, "Medium Skirt", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Bottoms\\Skirts\\MedSkirt.png"),
+(30009, 03, "Short Skirt", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Bottoms\\Skirts\\ShortSkirt.png"),
+(30010, 03, "Long Pleated Skirt", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Bottoms\\Skirts\\Pleated_LongSkirt.png"),
+(30011, 03, "Medium Pleated Skirt", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Bottoms\\Skirts\\Pleated_MedSkirt.png"),
+(30012, 03, "Short Pleated Skirt", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Bottoms\\Skirts\\Pleated_ShortSkirt.png"),
 (40000, 04, "Flats", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Shoes\\Flats.png"),
+(40001, 04, "Booties", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Shoes\\Booties.png"),
+(40002, 04, "Boots", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Shoes\\Boots.png"),
+(40003, 04, "Converse", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Shoes\\Converse.png"),
+(40004, 04, "Slides", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Shoes\\Slides.png"),
 (50000, 05, "Hanfu", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\CulturalClothing\\Hanfu.png"),
 (50001, 05, "Iro ati Buba", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\CulturalClothing\\IroAtiBuba.png"),
 (50002, 05, "Jeogori", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\CulturalClothing\\Jeogori.png"),
 (50003, 05, "Thobe", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\CulturalClothing\\Thobe.png");
 
-DROP TABLE IF EXISTS keywords;
-CREATE TABLE keywords(
-    keywordID INT(2) NOT NULL,
-    keyword VARCHAR(30) NOT NULL,
-    PRIMARY KEY (keywordID)
-);
+-- Did not get to implement
+--
+-- DROP TABLE IF EXISTS keywords;
+-- CREATE TABLE keywords(
+--     keywordID INT(2) NOT NULL,
+--     keyword VARCHAR(30) NOT NULL,
+--     PRIMARY KEY (keywordID)
+-- );
 
-DROP TABLE IF EXISTS clothingKeywords;
-CREATE TABLE clothingKeywords(
-    clothingID INT(5) NOT NULL,
-    keywordID INT(2) NOT NULL,
-    PRIMARY KEY (clothingID, keywordID),
-    CONSTRAINT clothingItem_clothingKeywords_fk FOREIGN KEY (clothingID) REFERENCES clothingItem (clothingID),
-    CONSTRAINT keywords_clothingKeywords_fk FOREIGN KEY (keywordID) REFERENCES keywords (keywordID)
-);
+-- DROP TABLE IF EXISTS clothingKeywords;
+-- CREATE TABLE clothingKeywords(
+--     clothingID INT(5) NOT NULL,
+--     keywordID INT(2) NOT NULL,
+--     PRIMARY KEY (clothingID, keywordID),
+--     CONSTRAINT clothingItem_clothingKeywords_fk FOREIGN KEY (clothingID) REFERENCES clothingItem (clothingID),
+--     CONSTRAINT keywords_clothingKeywords_fk FOREIGN KEY (keywordID) REFERENCES keywords (keywordID)
+-- );
 
 DROP TABLE IF EXISTS characterClothing;
 CREATE TABLE characterClothing(
