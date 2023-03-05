@@ -25,7 +25,7 @@ public class App extends Application {
         scene = new Scene(root, 900, 600, Color.web("#a3d2e3"));
         stage.setScene(scene);
 
-        Image image = new Image("C:\\Users\\allis\\OneDrive\\Desktop\\demo\\src\\main\\java\\com\\example\\CharacterThumbnail.png");
+        Image image = new Image("file:IMAGES\\CharacterThumbnail.png");
 
         ImageView iv1 = new ImageView();
         iv1.setImage(image);
