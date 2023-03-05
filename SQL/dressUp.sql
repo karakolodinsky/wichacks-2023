@@ -69,21 +69,23 @@ INSERT INTO clothingItem VALUES (10000, 01, "Low Bun", "file:demo\\src\\main\\ja
 (50002, 05, "Jeogori", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\CulturalClothing\\Jeogori.png"),
 (50003, 05, "Thobe", "file:demo\\src\\main\\java\\com\\example\\IMAGES\\CulturalClothing\\Thobe.png");
 
-DROP TABLE IF EXISTS keywords;
-CREATE TABLE keywords(
-    keywordID INT(2) NOT NULL,
-    keyword VARCHAR(30) NOT NULL,
-    PRIMARY KEY (keywordID)
-);
+-- Did not get to implement
+--
+-- DROP TABLE IF EXISTS keywords;
+-- CREATE TABLE keywords(
+--     keywordID INT(2) NOT NULL,
+--     keyword VARCHAR(30) NOT NULL,
+--     PRIMARY KEY (keywordID)
+-- );
 
-DROP TABLE IF EXISTS clothingKeywords;
-CREATE TABLE clothingKeywords(
-    clothingID INT(5) NOT NULL,
-    keywordID INT(2) NOT NULL,
-    PRIMARY KEY (clothingID, keywordID),
-    CONSTRAINT clothingItem_clothingKeywords_fk FOREIGN KEY (clothingID) REFERENCES clothingItem (clothingID),
-    CONSTRAINT keywords_clothingKeywords_fk FOREIGN KEY (keywordID) REFERENCES keywords (keywordID)
-);
+-- DROP TABLE IF EXISTS clothingKeywords;
+-- CREATE TABLE clothingKeywords(
+--     clothingID INT(5) NOT NULL,
+--     keywordID INT(2) NOT NULL,
+--     PRIMARY KEY (clothingID, keywordID),
+--     CONSTRAINT clothingItem_clothingKeywords_fk FOREIGN KEY (clothingID) REFERENCES clothingItem (clothingID),
+--     CONSTRAINT keywords_clothingKeywords_fk FOREIGN KEY (keywordID) REFERENCES keywords (keywordID)
+-- );
 
 DROP TABLE IF EXISTS characterClothing;
 CREATE TABLE characterClothing(
