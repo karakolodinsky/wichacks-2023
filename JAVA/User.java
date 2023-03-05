@@ -3,8 +3,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.google.api.client.util.Data;
-
 public class User {
     private ResultSet rs;
     private Connection conn; // not working yet
@@ -25,7 +23,6 @@ public class User {
 
     public int addUser() {
         try {
-                conn = Database.getConnect();
             int result = 0;
             String sql = "INSERT INTO userInfo (username, password, country) VALUES (?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -39,7 +36,7 @@ public class User {
             rs = conn.prepareStatement(stmt).executeQuery();
             rs.next();
 
-            userID = rs.getInt("userID");
+            userID = rs.getInt(1);
 
             return(result);
         } // end of try
@@ -52,7 +49,6 @@ public class User {
 
     public int connectCharacter(Character character) {
         try {
-                conn = Database.getConnect();
             int result = 0;
             String sql = "INSERT INTO userCharacters (userID, characterID) VALUES (?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
