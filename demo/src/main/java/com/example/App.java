@@ -65,7 +65,6 @@ public class App extends Application {
              
         layout.getChildren().addAll(button, text);
         layout2.getChildren().addAll(button2, text);
-         
         stage.setTitle("CultiDress");
         stage.setScene(scene);   
         stage.show();
