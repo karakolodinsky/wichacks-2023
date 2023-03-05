@@ -53,9 +53,6 @@ public class App extends Application {
         layout2.setBorder(new Border(new BorderStroke(Color.valueOf("#9E9E9E"), BorderStrokeStyle.SOLID, null, null)));
         Scene scene2 = new Scene(layout2, 900, 600);
          
-        Label label1 = new Label("This is the First Scene");
-        Label label2 = new Label("This is the Second Scene");
-         
         Button button = new Button("Forward");
         button.setAlignment(Pos.BOTTOM_RIGHT);
         button.setOnAction(e -> stage.setScene(scene2));
@@ -66,10 +63,10 @@ public class App extends Application {
         TextField text = new TextField();
         text.setMaxWidth(200);
              
-        layout.getChildren().addAll(label1, button, text);
-        layout2.getChildren().addAll(label2, button2, text);
+        layout.getChildren().addAll(button, text);
+        layout2.getChildren().addAll(button2, text);
          
-        stage.setTitle("CodersLegacy");
+        stage.setTitle("CultiDress");
         stage.setScene(scene);   
         stage.show();
         // VBox layout = new VBox();
