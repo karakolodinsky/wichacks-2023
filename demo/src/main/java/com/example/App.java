@@ -83,28 +83,28 @@ public class App extends Application {
         Image hair = new Image( "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Hair\\Low_Bun.png");
         Image shoes = new Image( "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Shoes\\Flats.png");
         ImageView imageView = new ImageView(body);
-        imageView.setFitWidth(360);
-        imageView.setFitHeight(450);
+        imageView.setFitWidth(425);
+        imageView.setFitHeight(425);
         imageView.setX(0);
         imageView.setY(0);
         ImageView imageView2 = new ImageView(top);
-        imageView2.setFitWidth(360);
-        imageView2.setFitHeight(450);
+        imageView2.setFitWidth(425);
+        imageView2.setFitHeight(425);
         imageView2.setX(0);
         imageView2.setY(0);
         ImageView imageView3 = new ImageView(bottom);
-        imageView3.setFitWidth(360);
-        imageView3.setFitHeight(450);
+        imageView3.setFitWidth(425);
+        imageView3.setFitHeight(425);
         imageView3.setX(0);
         imageView3.setY(0);
         ImageView imageView4 = new ImageView(hair);
-        imageView4.setFitWidth(360);
-        imageView4.setFitHeight(450);
+        imageView4.setFitWidth(425);
+        imageView4.setFitHeight(425);
         imageView4.setX(0);
         imageView4.setY(0);
         ImageView imageView5 = new ImageView(shoes);
-        imageView5.setFitWidth(360);
-        imageView5.setFitHeight(450);
+        imageView5.setFitWidth(425);
+        imageView5.setFitHeight(425);
         imageView5.setX(50);
         imageView5.setY(50);
 
@@ -139,11 +139,29 @@ public class App extends Application {
                 
                 }
         };
-        imageView.setCache(true);
-        imageView.setCacheHint(CacheHint.SPEED);
+
+        HBox hbox = new HBox();
+        VBox vbox = new VBox();
+        Button b1 = new Button("Hair");
+        Button b2 = new Button("Tops");
+        Button b3 = new Button("Bottoms");
+        Button b4 = new Button("Shoes");
+        Button b5 = new Button("Cultural");
+        vbox.getChildren().addAll(b1,b2,b3,b4,b5);
+        VBox vbox2 = new VBox();
+
+
+
+
+
+        // vbox2.getChildren().set(0,vb);
+        hbox.getChildren().addAll(stackp, vbox,vbox2);
+
+
+
         colorPicker.setOnAction(event);
         // layout.getChildren().addAll(GridPane)
-        layout.getChildren().addAll(name, text,stackp, colorPicker, cb);
+        layout.getChildren().addAll(name, text, hbox, colorPicker, cb);
         stage.setTitle("CultiDress");
         stage.setScene(scene); 
         stage.show();

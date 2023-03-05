@@ -4,6 +4,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.SQLNonTransientConnectionException;
+import java.sql.Statement;
+
+import com.google.api.client.util.Data;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -59,12 +69,16 @@ public class Login extends Application{
                 public void handle(ActionEvent e)
                 {
                   if (username.getText().equals("") || String.valueOf(password.getText()).equals("")) {
-                }
-                else if (verifyLogin(username.getText(),
-                String.valueOf(password.getText())) != -1){
-                        Application.launch(App.class);
+                } else
+                        try {
+                                if (verifyLogin(username.getText(),
+                                password.getText()) == -1){
+                                        Application.launch(App.class);
 
-                }
+                                }
+                        } catch (ClassNotFoundException e1) {
+                                System.out.println(e1);
+                        }
             };
         };
         login.setOnAction(event);
@@ -92,8 +106,11 @@ public class Login extends Application{
      * @param username
      * @param password
      * @return if the user exists, it returns the user id.
+         * @throws ClassNotFoundException
      */
-    public static int verifyLogin(String username, String password) {
+    public static int verifyLogin(String username, String password) throws ClassNotFoundException {
+        // Class.forName("com.google.cloud.sql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc");
         String instanceConnectionName = "vast-zodiac-379618:us-central1:wichacks";
         String databaseName = "dressUp";
 
@@ -125,7 +142,8 @@ public class Login extends Application{
         }
             
         } catch (SQLException e) {
-
+                System.out.println("AHHHHH");
+                System.out.println(e);
         }
 
         return -1;

@@ -17,6 +17,11 @@ in a database.
 public class Database {
 public static void main(String[] args) throws SQLNonTransientConnectionException 
 ,IOException, SQLException {
+
+
+        Connection con = getConnect();
+        System.out.println(con.getClientInfo());
+        System.out.println(con.getClass());
 }
 
 /**
