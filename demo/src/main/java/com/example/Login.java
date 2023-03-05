@@ -70,15 +70,11 @@ public class Login extends Application{
                 {
                   if (username.getText().equals("") || String.valueOf(password.getText()).equals("")) {
                 } else
-                        try {
-                                if (verifyLogin(username.getText(),
+                                if (Database.verifyLogin(username.getText(),
                                 password.getText()) == -1){
                                         Application.launch(App.class);
 
                                 }
-                        } catch (ClassNotFoundException e1) {
-                                System.out.println(e1);
-                        }
             };
         };
         login.setOnAction(event);
@@ -101,52 +97,5 @@ public class Login extends Application{
     }
 
 
-        /**
-     *
-     * @param username
-     * @param password
-     * @return if the user exists, it returns the user id.
-         * @throws ClassNotFoundException
-     */
-    public static int verifyLogin(String username, String password) throws ClassNotFoundException {
-        // Class.forName("com.google.cloud.sql.jdbc.Driver");
-        Class.forName("com.mysql.cj.jdbc");
-        String instanceConnectionName = "vast-zodiac-379618:us-central1:wichacks";
-        String databaseName = "dressUp";
 
-
-        String IP_of_instance = "10.83.160.3";
-        String username1 = "wichacks";
-        String password1 = "imsohungry";
-
-        String jdbcUrl = String.format(
-                "jdbc:mysql://%s/%s?cloudSqlInstance=%s"
-                 + "&socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false",
-        IP_of_instance,
-        databaseName,
-        instanceConnectionName);
-
-        try {
-                Connection conn = DriverManager.getConnection(jdbcUrl, username1, password1);
-            PreparedStatement st = (PreparedStatement) conn
-                    .prepareStatement("Select username, password from userInfo where username=?;");
-
-            st.setString(1, username);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                if (password == rs.getString(2)) {
-                    return 1;
-                    //update most recent access date
-                }
-                else return -1;
-        }
-            
-        } catch (SQLException e) {
-                System.out.println("AHHHHH");
-                System.out.println(e);
-        }
-
-        return -1;
-
-    }
 }
