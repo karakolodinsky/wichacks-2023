@@ -35,7 +35,7 @@ public class Character{
             rs = conn.prepareStatement(stmt).executeQuery();
             rs.next();
 
-            characterID = rs.getInt("characterID");
+            characterID = rs.getInt(1);
 
             return(result);
         } // end of try
