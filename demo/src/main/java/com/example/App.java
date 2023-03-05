@@ -1,16 +1,28 @@
 package com.example;
 
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.CacheHint;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.ColorInput;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.Light;
+import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -22,12 +34,14 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
 
 /**
  * JavaFX App
@@ -52,21 +66,86 @@ public class App extends Application {
         layout2.setBackground(new Background(new BackgroundFill(Color.web("#c5a4eb"), CornerRadii.EMPTY, Insets.EMPTY)));
         layout2.setBorder(new Border(new BorderStroke(Color.valueOf("#9E9E9E"), BorderStrokeStyle.SOLID, null, null)));
         Scene scene2 = new Scene(layout2, 900, 600);
+
+        Label name = new Label("Name");
+
          
-        Button button = new Button("Forward");
+        Button button = new Button("Save");
         button.setAlignment(Pos.BOTTOM_RIGHT);
         button.setOnAction(e -> stage.setScene(scene2));
          
-        Button button2 = new Button("Backwards");
-        button2.setOnAction(e -> stage.setScene(scene));
-         
         TextField text = new TextField();
         text.setMaxWidth(200);
-             
-        layout.getChildren().addAll(button, text);
-        layout2.getChildren().addAll(button2, text);
+
+        Image body = new Image( "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Character.png");
+        Image top = new Image( "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Tops\\CrewNeck_ShortSleeve.png");
+        Image bottom = new Image( "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Bottoms\\Pants\\Pants_Baggy.png");
+        Image hair = new Image( "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Hair\\Low_Bun.png");
+        Image shoes = new Image( "file:demo\\src\\main\\java\\com\\example\\IMAGES\\Shoes\\Flats.png");
+        ImageView imageView = new ImageView(body);
+        imageView.setFitWidth(360);
+        imageView.setFitHeight(450);
+        imageView.setX(0);
+        imageView.setY(0);
+        ImageView imageView2 = new ImageView(top);
+        imageView2.setFitWidth(360);
+        imageView2.setFitHeight(450);
+        imageView2.setX(0);
+        imageView2.setY(0);
+        ImageView imageView3 = new ImageView(bottom);
+        imageView3.setFitWidth(360);
+        imageView3.setFitHeight(450);
+        imageView3.setX(0);
+        imageView3.setY(0);
+        ImageView imageView4 = new ImageView(hair);
+        imageView4.setFitWidth(360);
+        imageView4.setFitHeight(450);
+        imageView4.setX(0);
+        imageView4.setY(0);
+        ImageView imageView5 = new ImageView(shoes);
+        imageView5.setFitWidth(360);
+        imageView5.setFitHeight(450);
+        imageView5.setX(50);
+        imageView5.setY(50);
+
+        StackPane stackp = new StackPane();
+        stackp.setAlignment(Pos.CENTER_LEFT);
+        stackp.getChildren().addAll(imageView, imageView2, imageView3, imageView4, imageView5);
+        
+        
+        ChoiceBox<String> cb = new ChoiceBox<>();
+        cb.getItems().addAll("body", "shoes", "top", "bottom", "hair");
+        cb.setValue("body");
+        final ColorPicker colorPicker = new ColorPicker();
+
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent e){
+                        Color c = colorPicker.getValue();
+                        Lighting lighting = new Lighting(new Light.Distant(45, 90, c));
+                        ColorAdjust bright = new ColorAdjust(0, 0, 0, .1);
+                        lighting.setContentInput(bright);
+                        lighting.setSurfaceScale(0.0);
+                        String val = cb.getValue();
+                        switch (val){
+                                case "body": imageView.setEffect(lighting);
+                                case "shoes": imageView5.setEffect(lighting);
+                                case "top": imageView2.setEffect(lighting);
+                                case "bottom": imageView3.setEffect(lighting);
+                                case "hair": imageView4.setEffect(lighting);
+                        }
+                        // todo: fix
+                        
+                        
+                
+                }
+        };
+        imageView.setCache(true);
+        imageView.setCacheHint(CacheHint.SPEED);
+        colorPicker.setOnAction(event);
+        // layout.getChildren().addAll(GridPane)
+        layout.getChildren().addAll(name, text,stackp, colorPicker, cb);
         stage.setTitle("CultiDress");
-        stage.setScene(scene);   
+        stage.setScene(scene); 
         stage.show();
         // VBox layout = new VBox();
         // VBox layout2 = new VBox();
