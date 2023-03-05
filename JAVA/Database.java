@@ -17,17 +17,6 @@ in a database.
 public class Database {
 public static void main(String[] args) throws SQLNonTransientConnectionException 
 ,IOException, SQLException {
-
-Connection connection = Database.getConnect();
-try (Statement statement = connection.createStatement()) {
-//   statement.executeUpdate("INSERT INTO categories VALUES (01, \"Head Accessories\"), (02, \"Tops\"), (03, \"Pants\"), (04, \"Shoes\"), (05, \"Cultural\");");
-  ResultSet resultSet = statement.executeQuery("Select * from categories");
-  while (resultSet.next()) {
-    System.out.println(resultSet.getString(2));
-  }
-}catch(Exception e){
-  e.printStackTrace();
-}
 }
 
 /**
@@ -116,5 +105,29 @@ try (Statement statement = connection.createStatement()) {
         return -1;
 
     }
+
+    public static ResultSet GetClothing (String clothing) throws IOException {
+        Connection conn = Database.getConnect();
+
+        try {
+            PreparedStatement st = (PreparedStatement) conn
+                    .prepareStatement("SELECT category FROM clothingKeyword WHERE name LIKE '" + clothing + "%' order by name");
+            System.out.println(st);
+            ResultSet rs = st.executeQuery();
+            return rs;
+        } catch (SQLException e) {
+            }
+
+        return null;
+        }
+
+        
+
+        // public static int addtoChar(String item, String user,) throws IOException {
+        //         Connection conn = Database.getConnect();
+        
+        //         try {
+        //         }
+        // }
 
 }
